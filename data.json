@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Jak zacząć naukę programowania?",
+        "description": "Wybierz język i ćwicz regularnie na małych projektach."
+    },
+    {
+        "title": "Czy HTML to język programowania?",
+        "description": "HTML to język znaczników, nie programowania."
+    },
+    {
+        "title": "Jakie są zalety Pythona?",
+        "description": "Prostota, popularność i szerokie zastosowanie w różnych dziedzinach."
+    },
+    {
+        "title": "Czy warto uczyć się C#?",
+        "description": "Tak, świetny dla aplikacji desktopowych i webowych."
+    },
+    {
+        "title": "Jak działa lazy loading?",
+        "description": "Ładuje treść tylko, gdy jest widoczna na ekranie."
+    }
+    
+]

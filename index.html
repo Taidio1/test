@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Responsive Navbar</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div class="app">
+		<div class="menu-toggle">
+			<div class="hamburger">
+				<span></span>
+			</div>
+		</div>
+
+		<aside class="sidebar">
+			<img id="sidebar-logo" src="/Images/logo.png" alt="Logo">
+			
+			<nav class="menu">
+				<a href="index.html" class="menu-item is-active">Strona Główna</a>
+				<a href="#" class="menu-item">Blog</a>
+				<a href="#" class="menu-item">Strona Wynikowa</a>
+				<a href="pytania.html" class="menu-item">Pytania od czytelników</a>
+			</nav>
+
+		</aside>
+
+		<main class="content">
+            <h1>Najnowsze Wpisy</h1>
+            <div id="main">
+                <div class="post lazy" data-index="1"></div>
+                <div class="post lazy" data-index="2"></div>
+                <div class="post lazy" data-index="3"></div>
+                <div class="post lazy" data-index="4"></div>
+                <div class="post lazy" data-index="5"></div>
+                <div class="post lazy" data-index="6"></div>
+                <div class="post lazy" data-index="7"></div>
+                <div class="post lazy" data-index="8"></div>
+                <div class="post lazy" data-index="9"></div>
+            </div>
+		</main>
+	</div>
+
+	<script>
+		const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');
+		});
+	</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+       const lazyPosts = document.querySelectorAll('.lazy');
+       const lazyLoad = new IntersectionObserver((entries, observer) => {
+           entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                   entry.target.innerHTML = `<h2>Wpis ${entry.target.dataset.index}</h2><p>Treść dynamicznie załadowana...</p>`;
+                   entry.target.classList.remove('lazy');
+                   observer.unobserve(entry.target);
+               }
+           });
+       });
+
+       lazyPosts.forEach(post => lazyLoad.observe(post));       
+   });
+</script>
+</body>
+</html>
