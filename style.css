@@ -136,6 +136,17 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.aboutme{
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.aboutme p{
+	padding: 15px 0 0 25px ;
+	width: 70%;
+}
+
 #news-column {
 	margin-top: 36.5%;
 	margin-left: 5px;
@@ -223,5 +234,10 @@
 		flex: 1 1 0;
 		display: flex;
 		flex-direction: column;
+	}
+
+	.aboutme p{
+		padding:0 0 0 10px ;
+		width: 100%;
 	}
 }

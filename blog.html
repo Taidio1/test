@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Responsive Navbar</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div class="app">
+		<div class="menu-toggle">
+			<div class="hamburger">
+				<span></span>
+			</div>
+		</div>
+
+		<aside class="sidebar">
+			<img id="sidebar-logo" src="Images/logo.png" alt="Logo">
+			
+			<nav class="menu">
+				<a href="index.html" class="menu-item">Strona Główna</a>
+				<a href="blog.html" class="menu-item is-active">Blog</a>
+				<a href="#" class="menu-item">Strona Wynikowa</a>
+				<a href="pytania.html" class="menu-item">Pytania od czytelników</a>
+			</nav>
+
+		</aside>
+
+		<main class="content">
+			<div>
+				<h1>Najnowsze Wpisy</h1>
+				<div id="main">
+					<div class="post lazy" data-index="1"></div>
+					<div class="post lazy" data-index="2"></div>
+					<div class="post lazy" data-index="3"></div>
+					<div class="post lazy" data-index="4"></div>
+					<div class="post lazy" data-index="5"></div>
+					<div class="post lazy" data-index="6"></div>
+					<div class="post lazy" data-index="7"></div>
+					<div class="post lazy" data-index="8"></div>
+					<div class="post lazy" data-index="9"></div>
+				</div>
+			</div>
+
+			<div>
+				<section id="news-column">
+                    <h2>Najnowsze</h2>
+                    <div id="news-list" class="posts-grid"></div>
+                </section>
+			</div>
+		</main>
+	</div>
+	<footer style="background-color: #333; color: #fff; text-align: center; padding: 10px 0; bottom: 0; width: 100%; padding: 20px;">
+		<p>&copy; 2025 Wiktoria Noworolnik. Wszelkie prawa zastrzeżone.</p>
+		<p>
+			<a href="https://www.facebook.com" style="color: #fff; text-decoration: none; margin: 0 10px;">Facebook</a> |
+			<a href="https://www.twitter.com" style="color: #fff; text-decoration: none; margin: 0 10px;">Twitter</a> |
+			<a href="https://www.instagram.com" style="color: #fff; text-decoration: none; margin: 0 10px;">Instagram</a>
+		</p>
+	</footer>
+	<script>
+		const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');
+		});
+	</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+       const lazyPosts = document.querySelectorAll('.lazy');
+	   const newsList = document.getElementById('news-list');
+
+	   fetch('data.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas pobierania danych.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const latestNews = data.slice(0, 5);
+			latestNews.forEach(news => {
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news-item');
+                newsItem.innerHTML = `
+                    <h3>${news.title}</h3>
+                    <p>${news.description}</p>
+                `;
+                newsList.appendChild(newsItem);
+            });
+		})
+
+
+       const lazyLoad = new IntersectionObserver((entries, observer) => {
+           entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                   entry.target.innerHTML = `<h2>Wpis ${entry.target.dataset.index}</h2><p>Treść dynamicznie załadowana...</p>`;
+                   entry.target.classList.remove('lazy');
+                   observer.unobserve(entry.target);
+               }
+           });
+       });
+
+       lazyPosts.forEach(post => lazyLoad.observe(post));       
+   });
+</script>
+</body>
+</html>
