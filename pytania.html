@@ -16,7 +16,7 @@
 		</div>
 
 		<aside class="sidebar">
-			<img id="sidebar-logo" src="Images/logo.png" alt="Logo">
+			<img id="sidebar-logo" src="/Images/logo.png" alt="Logo">
 			
 			<nav class="menu">
 				<a href="index.html" class="menu-item">Strona Główna</a>
@@ -28,12 +28,29 @@
 		</aside>
 
 		<main class="content">
-            <h1>Najnowsze Wpisy</h1>
-            <div id="main">
-
+            <div>
+                <!-- Sekcja "Zobacz także" -->
+                <section id="news-column">
+                    <h2>Najnowsze</h2>
+                    <div id="news-list" class="posts-grid"></div>
+                </section>
             </div>
+            <div>
+                <!-- Sekcja Pytań czytelników -->
+                <h1>Pytania od Czytelników</h1>
+                <div id="main"></div>
+            </div>
+            <div>
+                <!-- Sekcja "Zobacz także" -->
+                <section id="suggested">
+                    <h1>Zobacz także</h1>
+                    <div id="suggested-posts" class="posts-grid"></div>
+                </section>
+            </div>
+            
 		</main>
 	</div>
+
 
 	<script>
 		const menu_toggle = document.querySelector('.menu-toggle');
@@ -45,11 +62,12 @@
 		});
 	</script>
 
-<script>
- document.addEventListener("DOMContentLoaded", () => {
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
     const mainContainer = document.getElementById('main');
+    const suggestedContainer = document.getElementById('suggested-posts');
+    const newsList = document.getElementById('news-list');
 
-    // Pobierz dane z pliku JSON
     fetch('data.json')
         .then(response => {
             if (!response.ok) {
@@ -58,16 +76,39 @@
             return response.json();
         })
         .then(data => {
-            // Wygeneruj dynamicznie elementy na podstawie JSON
+            // Losowe 9 postów
+            const randomPosts = data.sort(() => 0.5 - Math.random()).slice(0, 9);
+            const latestNews = data.slice(0, 5);
+
+            latestNews.forEach(news => {
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news-item');
+                newsItem.innerHTML = `
+                    <h3>${news.title}</h3>
+                    <p>${news.description}</p>
+                `;
+                newsList.appendChild(newsItem);
+            });
+
+            randomPosts.forEach(post => {
+                const postDiv = document.createElement('div');
+                postDiv.classList.add('post');
+                postDiv.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>${post.description}</p>
+                `;
+                suggestedContainer.appendChild(postDiv);
+            });
+
+            // Lazy loading dla głównych wpisów
             data.forEach((post, index) => {
                 const lazyDiv = document.createElement('div');
                 lazyDiv.classList.add('lazy');
                 lazyDiv.classList.add('post');
-                lazyDiv.dataset.index = index + 1; // Ustaw index dla każdego elementu
+                lazyDiv.dataset.index = index + 1;
                 mainContainer.appendChild(lazyDiv);
             });
 
-            // Inicjalizacja Intersection Observera po wygenerowaniu elementów
             const lazyPosts = document.querySelectorAll('.lazy');
             const lazyLoad = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -97,6 +138,7 @@
             console.error('Błąd podczas pobierania danych:', error);
         });
 });
-</script>
+
+    </script>
 </body>
 </html>

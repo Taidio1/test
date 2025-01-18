@@ -1,23 +1,62 @@
 [
     {
-        "title": "Jak zacząć naukę programowania?",
-        "description": "Wybierz język i ćwicz regularnie na małych projektach."
+        "title": "Dlaczego koty mruczą?",
+        "description": "Mruczenie to sposób na komunikację i wyrażanie zadowolenia."
     },
     {
-        "title": "Czy HTML to język programowania?",
-        "description": "HTML to język znaczników, nie programowania."
+        "title": "Ile godzin dziennie śpią koty?",
+        "description": "Koty potrafią spać od 12 do 16 godzin dziennie."
     },
     {
-        "title": "Jakie są zalety Pythona?",
-        "description": "Prostota, popularność i szerokie zastosowanie w różnych dziedzinach."
+        "title": "Co to jest kocia karma premium?",
+        "description": "To karma o wysokiej jakości składnikach, bogata w białko i witaminy."
     },
     {
-        "title": "Czy warto uczyć się C#?",
-        "description": "Tak, świetny dla aplikacji desktopowych i webowych."
+        "title": "Jak działa koci węch?",
+        "description": "Koty mają bardzo czuły węch, który pomaga im rozpoznawać zapachy."
     },
     {
-        "title": "Jak działa lazy loading?",
-        "description": "Ładuje treść tylko, gdy jest widoczna na ekranie."
+        "title": "Dlaczego koty uwielbiają kartony?",
+        "description": "Kartony zapewniają im poczucie bezpieczeństwa i komfortu."
+    },
+    {
+        "title": "Co to jest kocia terapia?",
+        "description": "Kocia terapia to wykorzystanie obecności kotów do poprawy samopoczucia."
+    },
+    {
+        "title": "Dlaczego koty chowają pazury?",
+        "description": "Chronią swoje pazury przed uszkodzeniami i zużyciem."
+    },
+    {
+        "title": "Jak nauczyć kota korzystania z kuwety?",
+        "description": "Umieść kuwetę w cichym miejscu i pokazuj kotu, jak z niej korzystać."
+    },
+    {
+        "title": "Dlaczego koty ocierają się o ludzi?",
+        "description": "To sposób na znaczenie zapachem i okazywanie sympatii."
+    },
+    {
+        "title": "Co oznacza, gdy kot macha ogonem?",
+        "description": "Machanie ogonem może wskazywać na złość, zdenerwowanie lub zainteresowanie."
+    },
+    {
+        "title": "Czy koty widzą w ciemności?",
+        "description": "Tak, ich oczy są przystosowane do widzenia przy słabym świetle."
+    },
+    {
+        "title": "Jak rozpoznać, że kot jest chory?",
+        "description": "Objawy to brak apetytu, apatia lub zmiana w zachowaniu."
+    },
+    {
+        "title": "Czy koty przywiązują się do ludzi?",
+        "description": "Tak, koty potrafią tworzyć silne więzi z właścicielami."
+    },
+    {
+        "title": "Dlaczego koty drapią meble?",
+        "description": "Drapanie to sposób na ostrzenie pazurów i oznaczanie terenu."
+    },
+    {
+        "title": "Jak wprowadzić nowego kota do domu?",
+        "description": "Zapewnij nowemu kotu osobne miejsce i pozwól na powolne zapoznawanie się z innymi zwierzętami."
     }
-    
 ]

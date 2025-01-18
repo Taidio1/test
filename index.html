@@ -16,7 +16,7 @@
 		</div>
 
 		<aside class="sidebar">
-			<img id="sidebar-logo" src="Images/logo.png" alt="Logo">
+			<img id="sidebar-logo" src="/Images/logo.png" alt="Logo">
 			
 			<nav class="menu">
 				<a href="index.html" class="menu-item is-active">Strona Główna</a>
@@ -28,18 +28,27 @@
 		</aside>
 
 		<main class="content">
-            <h1>Najnowsze Wpisy</h1>
-            <div id="main">
-                <div class="post lazy" data-index="1"></div>
-                <div class="post lazy" data-index="2"></div>
-                <div class="post lazy" data-index="3"></div>
-                <div class="post lazy" data-index="4"></div>
-                <div class="post lazy" data-index="5"></div>
-                <div class="post lazy" data-index="6"></div>
-                <div class="post lazy" data-index="7"></div>
-                <div class="post lazy" data-index="8"></div>
-                <div class="post lazy" data-index="9"></div>
-            </div>
+			<div>
+				<h1>Najnowsze Wpisy</h1>
+				<div id="main">
+					<div class="post lazy" data-index="1"></div>
+					<div class="post lazy" data-index="2"></div>
+					<div class="post lazy" data-index="3"></div>
+					<div class="post lazy" data-index="4"></div>
+					<div class="post lazy" data-index="5"></div>
+					<div class="post lazy" data-index="6"></div>
+					<div class="post lazy" data-index="7"></div>
+					<div class="post lazy" data-index="8"></div>
+					<div class="post lazy" data-index="9"></div>
+				</div>
+			</div>
+
+			<div>
+				<section id="news-column">
+                    <h2>Najnowsze</h2>
+                    <div id="news-list" class="posts-grid"></div>
+                </section>
+			</div>
 		</main>
 	</div>
 
@@ -56,6 +65,29 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
        const lazyPosts = document.querySelectorAll('.lazy');
+	   const newsList = document.getElementById('news-list');
+
+	   fetch('data.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd podczas pobierania danych.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const latestNews = data.slice(0, 5);
+			latestNews.forEach(news => {
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news-item');
+                newsItem.innerHTML = `
+                    <h3>${news.title}</h3>
+                    <p>${news.description}</p>
+                `;
+                newsList.appendChild(newsItem);
+            });
+		})
+
+
        const lazyLoad = new IntersectionObserver((entries, observer) => {
            entries.forEach(entry => {
                if (entry.isIntersecting) {
